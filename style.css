@@ -1,80 +1,32 @@
-body{
+body {
     background-color: #9C835F;
 }
 
-.header-section{
-    position: relative;
-    vertical-align: middle;
-    margin-left: -10vh;
-}
+/* Header Section */
 
 .back-img{
     height: 7vh;
     width: auto;
 }
 
-.logo-img{
+.game-logo{
     height: 11vh;
-    width: auto;
-} 
-
-/* .header{
-    margin-left: -1%;
-} */
-
-.btn-custom{
-    /* max-width: 5rem; */
-    height: auto;
-    margin: 1rem;
-    padding: 15px;
-    cursor: pointer;
-    transition: 100ms;
-    /* align-items: center; */
+    width: auto;    
 }
 
-.btn-custom:hover{
-    transform: scale(1.2) rotate(15deg);
-    border-radius: 1rem;
-    /* background-color: #C4C4C4; */
-}
-
-.custom-img{
-    height: auto;
-    margin: 3.4rem;
-    padding: 15px;
-    cursor: pointer;
-    border-radius: 10rem;
-    transition: 100ms;  
-}
-
-/* .custom-img:hover{
-    transform: scale(1.0);
-    background-color: #C4C4C4;
-    border-radius: 5rem;  
-} */
-
-.active{
-    background-color: #C4C4C4;
-    border-radius: 1000rem;
-}
-
-.text-title{
+.title-game{
     font-family: Open Sans;
     font-style: normal;
     font-weight: bold;
     font-size: 5vh;
     margin-top: 2rem;
-    /* line-height: 49px; */
+    line-height: 49px;
     text-transform: uppercase;
 
     color: #F9B23D;
 }
 
-.game-section{
-    position: relative;
-    margin-top: 1.5rem;
-}
-
+/* players */
 .player{
     font-family: "Open Sans";
     font-style: normal;
@@ -84,7 +36,9 @@ body{
     font-size: 2.5vw;
 }
 
-.versus{
+/* game section */
+/* result section */
+.result-section{
     position: relative;
     color: #BD0000;
     font-family: Open Sans;
@@ -97,6 +51,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin: 0 -10vh -5vh -10vh; */
 }
 
 .result-text{
@@ -125,7 +80,8 @@ body{
     align-items: center;
     background-color: #4C9654;
     z-index: -1;
-    margin-top: 30vh;
+    margin: 0 -10vh -5vh -10vh;
+    top: 22vh;
 }
 
 .draw{
@@ -143,6 +99,29 @@ body{
     z-index: -1;
 }
 
-/* .draw{
-    display: none;
-} */
+.active{
+    background-color: #C4C4C4;
+    border-radius: 2rem;
+}
+
+/* player general section */
+.choice-player{
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: 100ms;  
+}
+
+.choice-player:hover{
+    transform: scale(1.2) rotate(15deg);
+    border-radius: 1rem;
+}
+
+/* refresh button */
+.btn-custom{
+    cursor: pointer;
+    transition: 100ms;
+}
+
+.btn-custom:hover{
+    transform: scale(1.2) rotate(180deg);
+}
