@@ -2,9 +2,11 @@ class Result{
     constructor(player){
         this.player = player;
     }
-    result(computer, player) {
+    // menentukan output yang akan di tampilkan pada bagian 'VS' 
+    // dan mengaktifkan hover di bagian player 1
+    result(computer, player){ 
         let result = null;
-        const output = document.getElementById('idResult');
+        const output = document.getElementById('finalResult');
         const bgResult = document.getElementById('bgResult');
 
         const playerWin = 'Player 1 Win';
@@ -18,22 +20,34 @@ class Result{
         else if (computer === 'paper' && player === 'rock') result = comWin;
         else if (computer === 'rock' && player === 'scissors') result = comWin;
         else if (computer === 'rock' && player ==='paper') result = playerWin;
-        else result = 'Terjadi Kesalahan'
+        else result = 'Error Detected'
 
         output.innerHTML = result;
         output.classList.add('result-text');
-        bgResult.classList.remove('versus');
+        bgResult.classList.remove('result-section');
         bgResult.classList.add('bg-result');
         
         if (result === 'Draw') bgResult.classList.add('draw');
         else bgResult.classList.remove('draw');
 
+        console.log(`Result : ${result}`);
+
+        const rock = document.getElementById('playerRock');
+        const paper = document.getElementById('playerPaper');
+        const scissors = document.getElementById('playerScissors');
+
+        rock.classList.remove('active');
+        paper.classList.remove('active');
+        scissors.classList.remove('active');
         
-        
-        console.log(`Result: ${result}`);
+        if (player === 'paper') paper.classList.add('active');
+        else if (player === 'rock') rock.classList.add('active');
+        else scissors.classList.add('active');
+
+        return result;
     }
 };
-
+    // logika permainan game mengunakan math random
     class PlayGame extends Result{
         constructor(player){
             super(player)
@@ -56,8 +70,8 @@ class Result{
             else scissors.classList.add('active');
 
             return results;
-        }  
-
+        } 
+        
         play() {
             let options = ['rock', 'paper' ,'scissors'];
             
@@ -73,34 +87,43 @@ class Result{
 const buttons = document.querySelectorAll("button");
 
 var refresh = true;
-
-buttons.forEach((button) => {
-  button.addEventListener("click", function (event) {
-    let dataPlayer = this.dataset.player;
-    console.log(dataPlayer);
-    let playGame = new PlayGame(dataPlayer);
     
-    if (refresh) {
-        refresh = false;
-        playGame.play();
-    } else{
-        console.log('Refresh Page');
-        // alert(
-        //     'Silakan Refresh Halaman Ini :)'
-        // );
-    }
-  });
+buttons.forEach((button) => {
+    button.addEventListener("click", function (event) {
+        let dataPlayer = this.dataset.player;
+        console.log(dataPlayer);
+        let playGame = new PlayGame(dataPlayer);
+        
+        if (refresh) {
+            refresh = false;
+            playGame.play();
+        } else{
+            console.log('Refresh Page');
+            // alert(
+            //     'Silakan Refresh Halaman Ini :)'
+            // );
+        }
+    });
 });
-
+// fungsi refreshbutton menghapus semua kondisi aktif
+// dan mengembalikan tampilan css ke halaman awal
 const refreshButton = document.getElementById('refreshButton')
 
 refreshButton.addEventListener('click',function(){
-    const output = document.getElementById('idResult');
+    const output = document.getElementById('finalResult');
     const bgResult = document.getElementById('bgResult');
 
-    const rock = document.getElementById('comRock');
-    const paper = document.getElementById('comPaper');
-    const scissors = document.getElementById('comScissors');
+    const comRock = document.getElementById('comRock');
+    const comPaper = document.getElementById('comPaper');
+    const comScissors = document.getElementById('comScissors');
+
+    comRock.classList.remove('active');
+    comPaper.classList.remove('active');
+    comScissors.classList.remove('active');
+
+    const rock = document.getElementById('playerRock');
+    const paper = document.getElementById('playerPaper');
+    const scissors = document.getElementById('playerScissors');
 
     rock.classList.remove('active');
     paper.classList.remove('active');
@@ -108,7 +131,7 @@ refreshButton.addEventListener('click',function(){
 
     output.innerHTML = 'VS';
     output.classList.remove('result-text');
-    bgResult.classList.add('versus');
+    bgResult.classList.add('result-section');
     bgResult.classList.remove('bg-result');
     bgResult.classList.remove('draw');
 
